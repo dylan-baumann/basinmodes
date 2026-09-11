@@ -1,6 +1,6 @@
 % Purpose : Setup script, building operators, grid, metric, and connectivity tables.
 % Definition of constants
-Nfp = N+1; Np = (N+1)*(N+2)/2; Nfaces=3; NODETOL = 1e-12;
+Nfp = N+1; Np = (N+1)*(N+2)/2; Nfaces=3; NODETOL = 1e-7;
 
 % Compute nodal set
 [x,y] = Nodes2D(N); [r,s] = xytors(x,y);
