@@ -11,9 +11,11 @@ for ii=1:NUM_H_REFINES
     StartUp2D;
 end
 
+Hmin = 1.0;
+
 %interpolate bathymetry profile to unstructured mesh.
 if ANALYTIC_DEPTH == false
-    H = interp2(depthdata.x,depthdata.y,depthdata.H,x,y,'linear');
+    H = interp2(depthdata.x, depthdata.y, depthdata.H, x, y, 'linear', Hmin);
 else
     H = H_analytic(x, y);
 end
