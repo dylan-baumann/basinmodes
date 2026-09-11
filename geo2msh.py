@@ -41,14 +41,14 @@ def generate_msh_from_geo(input_filename: str) -> str:
     libgmsh.gmshInitialize(0, None, 1, 0, ctypes.byref(ierr))
 
     try:
+        # Suppress INFO (5) and WARNING (2) messages; show ERRORS (1) only
+        libgmsh.gmshOptionSetNumber(b"General.Verbosity", 1.0, ctypes.byref(ierr))
+
         # 2. Open input .geo script
         libgmsh.gmshOpen(input_filename.encode("utf-8"), ctypes.byref(ierr))
 
         # 3. Set algorithm to Frontal-Delaunay (2D triangles)
         libgmsh.gmshOptionSetNumber(b"Mesh.Algorithm", 6.0, ctypes.byref(ierr))
-
-        # Suppress INFO (5) and WARNING (2) messages; show ERRORS (1) only
-        libgmsh.gmshOptionSetNumber(b"General.Verbosity", 1.0, ctypes.byref(ierr))
 
         # 4. Set format to Gmsh v2.2
         libgmsh.gmshOptionSetNumber(b"Mesh.MshFileVersion", 2.2, ctypes.byref(ierr))
