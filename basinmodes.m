@@ -1,5 +1,6 @@
-load(MESH_FILE);
-
+if exist('MESH_FILE', 'var')
+    load(MESH_FILE);
+end
 
 StartUp2D;  %had to tweak NODETOL in this - apparently 1e-12 is too small.
 BuildBCMaps2D;
