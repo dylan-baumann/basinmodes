@@ -42,21 +42,21 @@ hinv = 1./h; %need this for the Dirichlet problem.
 
 %Build Laplacian operator with Neuman BC's (assumes mesh has boundaries set
 %to Wall or Neuman)
-[OpNeu,MM] = PoissonIPDG2Dsdd_eig(h);
+[OpNeu, MM] = PoissonIPDG2Dsdd_eig(h);
 
-[efuns,d,convflag]=eigs(OpNeu,MM,numpot+1,'SM');   
+[efuns, d, convflag]=eigs(OpNeu,MM,numpot+1, 'SM');
 
 if convflag ~= 0
     disp('eigenvalues didn''t converged! (normal laplacian operator)');
 end
 
-d= diag(d);
+d = diag(d);
 [lambda,inds] = sort(d,'ascend');
-efuns = efuns(:,inds);
+efuns = efuns(:, inds);
 
 %get rid of mode zero
 lambda = lambda(2:end);
-efuns = efuns(:,2:end);
+efuns = efuns(:, 2:end);
 
 phi = cell(numpot,1);  %Allocate cell array for homogenous Neuman eigenfns
 
@@ -79,27 +79,27 @@ end
 ids = find(BCType == Wall | BCType == Neuman);
 BCType(ids) = Dirichlet;  
 
-[OpDir,MM] = PoissonIPDG2Dsdd_eig(hinv);  
+[OpDir,MM] = PoissonIPDG2Dsdd_eig(hinv);
 
-[efuns,d,convflag] = eigs(OpDir,MM,numstrm,'SM');   
+[efuns, d, convflag] = eigs(OpDir, MM, numstrm, 'SM');
 if convflag ~= 0
     disp('eigenvalues didn''t converged! (normal laplacian operator)');
 end
 
-d= diag(d);
-oldd =d;
-[mu,inds] = sort(d,'ascend');
-efuns = efuns(:,inds);
+d = diag(d);
+oldd = d;
+[mu,inds] = sort(d, 'ascend');
+efuns = efuns(:, inds);
 
 
 %disp('checking normalization of psis...');
-psi = cell(numstrm,1);  %Allocate cell array for homogenous Dirichlet eigenfns
+psi = cell(numstrm, 1);  %Allocate cell array for homogenous Dirichlet eigenfns
 for jj=1:numstrm
     psitmp = efuns(:,jj);
-    psi{jj} = reshape(psitmp,Np,K); 
+    psi{jj} = reshape(psitmp, Np, K);
     
     %normalize eigenfunction
-    alpha = dgint(psi{jj}.*psi{jj},V,J);
+    alpha = dgint(psi{jj}.*psi{jj}, V, J);
     psi{jj} = ((sqrt(A)*c0*Hbar)/sqrt(alpha)/sqrt(mu(jj))).*psi{jj};
     
     %disp(['Rel. error in normalization: ' num2str((mu(jj)*dgint(psi{jj}.*psi{jj},V,J)-A*c02*Hbar^2)/(A*c02*Hbar^2))]); %works good
@@ -107,10 +107,10 @@ end
 
 %Now construct irrotational and solenoidal basis functions
 %vphi_j = - grad phi_j, and vpsi_j = hinv (khat cross grad psi_j) .
-vphix = cell(numpot,1);
-vphiy = cell(numpot,1);
+vphix = cell(numpot, 1);
+vphiy = cell(numpot, 1);
 
-dphi = zeros(3*Nfp,K);
+dphi = zeros(Nfaces*Nfp, K);
 for jj = 1:numpot
     phitmp = phi{jj};
     [phi_x,phi_y] = Grad2D(phitmp);
@@ -127,10 +127,10 @@ end
 
 %now solenoidal:
 %vpsix = hinv (-psi_y) , vpsiy = hinv (psi_x)
-vpsix = cell(numstrm,1);
-vpsiy = cell(numstrm,1);
+vpsix = cell(numstrm, 1);
+vpsiy = cell(numstrm, 1);
 
-dpsi = zeros(3*Nfp,K);
+dpsi = zeros(Nfaces*Nfp, K);
 for jj=1:numstrm
     psitmp = psi{jj};
     [psi_x,psi_y] = Grad2D(psitmp);
@@ -150,7 +150,6 @@ end
 nu = sqrt(c02.*lambda);
 a = zeros(numpot,numpot); b = zeros(numpot,numstrm);
 d = zeros(numstrm,numstrm);
-
 
 %compute 'a' matrix:
 for ii=1:numpot
@@ -172,7 +171,7 @@ c = -b';
 for ii=1:numstrm
     for jj=1:numstrm
         dintegrand = f.*(1/c02/A/(Hbar.^2)).*hinv.*(-vpsiy{ii}.*vpsix{jj} + vpsiy{jj}.*vpsix{ii});
-        d(ii,jj) = dgint(dintegrand,V,J);
+        d(ii, jj) = dgint(dintegrand, V, J);
     end
 end
 
@@ -190,9 +189,11 @@ finalMat = 1i*[-a    -b   -nudiag;
        
 %Sanity check: is finalMat hermitian? 
             
-[efuns,myeigs] = eig(finalMat);
+[efuns, myeigs] = eig(finalMat);
 myeigs = diag(myeigs);
-[dump,inds] = sort(abs(myeigs),'ascend');  %sort by absolute frequency.
+
+%Sort by absolute frequency.
+[dump, inds] = sort(abs(myeigs), 'ascend');
 myeigs = myeigs(inds);
 
 periods = 2*pi./myeigs;
@@ -200,27 +201,27 @@ periods = periods/3600
 
 scaledeigs = myeigs/f;
 
-efuns = efuns(:,inds);
+efuns = efuns(:, inds);
 
 nummodes=2*numpot+1*numstrm;
 
-potential = cell(nummodes,1);
-streamfcn = cell(nummodes,1);
-eta = cell(nummodes,1);
+potential = cell(nummodes, 1);
+streamfcn = cell(nummodes, 1);
+eta = cell(nummodes, 1);
 
 for jj=1:nummodes
-    potential{jj} = zeros(Np,K);
-    eta{jj} = zeros(Np,K);
+    potential{jj} = zeros(Np, K);
+    eta{jj} = zeros(Np, K);
     for kk=1:numpot
-        potential{jj} = potential{jj} + efuns(kk,jj)*phi{kk};
-        eta{jj} = eta{jj} + efuns(kk+numpot+numstrm,jj)*(sqrt(lambda(kk))/c0)*phi{kk};
+        potential{jj} = potential{jj} + efuns(kk, jj)*phi{kk};
+        eta{jj} = eta{jj} + efuns(kk+numpot+numstrm, jj)*(sqrt(lambda(kk))/c0)*phi{kk};
     end
     
 end
 for jj=1:nummodes
-    streamfcn{jj} = zeros(Np,K);
+    streamfcn{jj} = zeros(Np, K);
     for kk=1:numstrm
-        streamfcn{jj} = streamfcn{jj} + efuns(kk+numpot,jj)*psi{kk};
+        streamfcn{jj} = streamfcn{jj} + efuns(kk+numpot, jj)*psi{kk};
     end
 end
 
@@ -228,12 +229,13 @@ end
 figure(1); clf; colormap(darkjet);
 start=numstrm+1;
 for jj=1:2:8
-    subplot(2,2,ceil(jj/2));
-    PlotField2D(N,x,y,real(eta{jj+start})); 
+    subplot(2, 2, ceil(jj/2));
+    PlotField2D(N, x, y, real(eta{jj+start}));
     view([0 90]); 
     axis equal;
     axis tight;
      
+    colormap(darkjet);
     colorbar; 
     title(['T= ' num2str(2*pi/abs(myeigs(jj+start))/3600) ' h']); 
     drawnow;
