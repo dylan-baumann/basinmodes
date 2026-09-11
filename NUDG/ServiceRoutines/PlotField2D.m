@@ -44,7 +44,7 @@ end
 xout = interp*xin; yout = interp*yin; uout = interp*uin;
 
 % render and format solution field
-handle = trisurf(TRI, xout(:), yout(:), uout(:));
+handle = trisurf(TRI, xout(:), yout(:), 0*yout - 1, uout(:));
 xlim([-1 1]); ylim([-1 1]);
 shading interp,    
 %material shiny,    
