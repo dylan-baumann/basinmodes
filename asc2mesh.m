@@ -1,4 +1,4 @@
-%asc2mesh
+%asc2mesh -- DEPRECATED:
 
 
 %read parameters from header file
@@ -88,18 +88,18 @@ yy = yy - min(yy(:));
 % Now, smooth the bathymetry
 bzsmooth = bathycart;
 
-for k=1:8 %8
+for k=1:4 %8
     bzsmooth = conv2(bzsmooth,[1/8 3/4 1/8]'*[1/8 3/4 1/8],'same');
 end
 
 land = double(bzsmooth > -0.5); % Find the 'land' cells
-for k=1:3 %3
+for k=1:1 %3
     % Smooth that into the water cells, to find near-land cells.
     land = conv2(land,ones(3),'same');
 end
 % Invert that map, to find water that is -not- disconnected
 water = double(land == 0);
-for k=1:3  %3
+for k=1:1  %3
     water = conv2(water,ones(3),'same');
 end
 
@@ -273,7 +273,7 @@ BCType = 0*EToE;
 
 %Insert the correct BC codes for boundaries
 Wall=3;
-BCType = CorrectBCTable_derek(EToV,VX,VY,node,edge,BCType,Wall);
+BCType = CorrectBCTable_v3(EToV,VX,VY,node,edge,BCType,Wall);
 
 %Need to do this to make vertex arrays consistent with main scripts.
 VX = VX';
