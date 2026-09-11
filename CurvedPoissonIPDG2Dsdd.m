@@ -23,8 +23,6 @@ gRoota = gauss.interp*roota;
 % global node numbering
 entries = (1:Np*Np)'; entriesMM = (1:Np*Np)'; 
 for k1=1:K 
-  if(~mod(k1,200)) k1, end;
-
   % Location of k1'th diagonal block entries in OP matrix
   rows1 = ((k1-1)*Np+1:k1*Np)'*ones(1,Np); cols1 = rows1';
 

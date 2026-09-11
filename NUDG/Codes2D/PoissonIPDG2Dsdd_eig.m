@@ -35,7 +35,6 @@ rta = sqrt(a);
 % global node numbering
 entries = (1:Np*Np)'; entriesMM = (1:Np*Np)'; 
 for k1=1:K 
-  if(~mod(k1,1000)) k1, end;
   rows1 = ((k1-1)*Np+1:k1*Np)'*ones(1,Np); cols1 = rows1';
 
   %get local 'root a' operator and write as a diagonal matrix
