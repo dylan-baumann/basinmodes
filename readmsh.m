@@ -121,5 +121,5 @@ function [Nv,VX, VY, K, EToV,BCType,node,edge] = readmsh(filename)
 
     %Insert the correct BC codes for boundaries
     Wall=3;
-    BCType = CorrectBCTable_derek(EToV,VX,VY,node,edge,BCType,Wall, 1e-2);
+    BCType = CorrectBCTable_v3(EToV,VX,VY,node,edge,BCType,Wall, 1e-2);
 end

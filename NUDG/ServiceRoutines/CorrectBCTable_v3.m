@@ -1,4 +1,4 @@
-function BCType = CorrectBCTable_derek(EToV, VX, VY, node, edge, BCType, BCcode, tol, hack)
+function BCType = CorrectBCTable_v3(EToV, VX, VY, node, edge, BCType, BCcode, tol, hack)
     %Modified by D. Steinmoeller to not require the global vars.
     %and to work without a distance function
 
