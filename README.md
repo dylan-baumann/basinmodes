@@ -17,7 +17,7 @@ All physical and computational parameters (and mesh) are specified within the dr
 
 The circular-basin test cases (Csanady; Lamb) use the circlemesh_nohole.mat mesh that is checked into the repository root folder. For Lake Ontario test case, you will need to generate the mesh file and copy it into the ontario_surfacemodes/ folder.
 
-For machines with gmsh installed, this can be done (in bash) vioa:
+For machines with gmsh installed, this can be done (in bash) via:
 
     $ chmod +x geo2msh.sh
     $ ./geo2msh.sh ontario.geo 
