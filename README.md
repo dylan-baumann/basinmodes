@@ -2,16 +2,28 @@
 
 <table>
     <tr>
-        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1a.gif" alt="Fig 1a" style="width: 150px;"/></td>
-        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1b.gif" alt="Fig 1b" style="width: 150px;"/></td>
-        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1c.gif" alt="Fig 1c" style="width: 150px;"/></td>
-        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1d.gif" alt="Fig 1d" style="width: 150px;"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1a.gif" alt="Fig 1a"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1b.gif" alt="Fig 1b"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1c.gif" alt="Fig 1c"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1d.gif" alt="Fig 1d"/></td>
     </tr>
     <tr style="text-align: center;">
         <td>(a)</td>
         <td>(b)</td>
         <td>(c)</td>
         <td>(d)</td>
+    </tr>
+    <tr>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1e.gif" alt="Fig 1e"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1f.gif" alt="Fig 1f"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1g.gif" alt="Fig 1g"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1h.gif" alt="Fig 1h"/></td>
+    </tr>
+    <tr style="text-align: center;">
+        <td>(e)</td>
+        <td>(f)</td>
+        <td>(g)</td>
+        <td>(h)</td>
     </tr>
 </table>
 This MATLAB/GNU Octave code repository can be used to calculate basin-scale free oscillations in natural bodies of water, in particular their frequencies and spatial structure as the solution ("modes") of an eigenvalue problem. Visualization of the oscillations is also facilitated by these scripts. See below for details.
