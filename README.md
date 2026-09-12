@@ -7,7 +7,7 @@
         <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1c.gif" alt="Fig 1c"/></td>
         <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1d.gif" alt="Fig 1d"/></td>
     </tr>
-    <tr style="text-align: center;">
+    <tr>
         <td>(a)</td>
         <td>(b)</td>
         <td>(c)</td>
@@ -19,7 +19,7 @@
         <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1g.gif" alt="Fig 1g"/></td>
         <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1h.gif" alt="Fig 1h"/></td>
     </tr>
-    <tr style="text-align: center;">
+    <tr>
         <td>(e)</td>
         <td>(f)</td>
         <td>(g)</td>
