@@ -1,5 +1,19 @@
 # basinmodes
 
+<table>
+    <tr>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1a.gif" alt="Fig 1a"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1b.gif" alt="Fig 1b"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1c.gif" alt="Fig 1c"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1d.gif" alt="Fig 1d"/></td>
+    </tr>
+    <tr style="text-align: center;">
+        <td>(a)</td>
+        <td>(b)</td>
+        <td>(c)</td>
+        <td>(d)</td>
+    </tr>
+</table>
 This MATLAB/GNU Octave code repository can be used to calculate basin-scale free oscillations in natural bodies of water, in particular their frequencies and spatial structure as the solution ("modes") of an eigenvalue problem. Visualization of the oscillations is also facilitated by these scripts. See below for details.
 
 ## Getting Started
