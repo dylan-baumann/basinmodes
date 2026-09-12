@@ -2,10 +2,10 @@
 
 <table>
     <tr>
-        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1a.gif" alt="Fig 1a"/></td>
-        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1b.gif" alt="Fig 1b"/></td>
-        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1c.gif" alt="Fig 1c"/></td>
-        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1d.gif" alt="Fig 1d"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1a.gif" alt="Fig 1a" style="width: 150px;"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1b.gif" alt="Fig 1b" style="width: 150px;"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1c.gif" alt="Fig 1c" style="width: 150px;"/></td>
+        <td><img src="https://github.com/dsteinmo/basinmodes/blob/master/gifs/fig1d.gif" alt="Fig 1d" style="width: 150px;"/></td>
     </tr>
     <tr style="text-align: center;">
         <td>(a)</td>
