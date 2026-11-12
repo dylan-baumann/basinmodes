@@ -1,11 +1,13 @@
 
 %mode=201; %gravest gravity/Kelvin mode = 201.
 %mode=204;
+mode = seiche_idx(1);
 if ~exist('mode', 'var')
     mode = numstrm + 1;
 end
 
 figure(2); clf; colormap(darkjet);
+set(gcf, 'Position', [100, 100, 1280, 720]);
 
 % Get angular frequency,
 freq = myeigs(mode);
@@ -14,6 +16,12 @@ freq = myeigs(mode);
 T = 2*pi/abs(freq);
 numframes = 50;
 t=0:T/numframes:T;  %make array of times to evaluate mode at.
+
+physical_num = find(seiche_idx == mode);
+v = VideoWriter(sprintf('mode_%d.mp4', physical_num), 'MPEG-4');
+v.FrameRate = 8; 
+v.Quality = 100;
+open(v);
 
 for jj=1:length(t)
     real_eta = real(exp(1i*freq*t(jj))*eta{mode});
@@ -25,7 +33,13 @@ for jj=1:length(t)
     axis tight; axis equal;
     caxis([-eta_max eta_max]);
     colormap(darkjet);
+    % print('-dpng', fullfile('frames', sprintf('frame%07d.png', jj)));
+    % drawnow;
     title(['w/f=' sprintf('%1.2f, t=%1.2f of %1.2f',scaledeigs(mode),t(jj),T)]);
-    print('-dpng',sprintf('frame%07d.png',jj));
     drawnow;
+    
+    frame = getframe(gcf);
+    writeVideo(v, frame);
 end
+close(v);
+close(gcf);
